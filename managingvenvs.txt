@@ -1,0 +1,100 @@
+Multiple elements of the stack required to manage a python Jupyter Labs environment, they are:
+
+* python
+* venv
+* virtualenv wrappers
+* jupyter-lab/notebook
+* ipykernel
+* pip
+
+Some notes:
+
+In order to keep thing sane, all python work should always be done in virtual environment.
+
+In general, the easiest way to create, switch, remove virtual environments is with Virtual Environment Wrappers
+https://virtualenvwrapper.readthedocs.io/en/latest/
+
+VirtualEnvironmentWrappers rely on virtualenv https://virtualenv.pypa.io/en/latest/
+
+(Note - there is also venv (Python3) and pipenv (which is a combination of requirements and enviroment management) 
+venv doesn't do everything that virtualenv can do, and pipenv is a bigger beast)
+
+Pip can be installed with:
+
+o sudo apt update
+o sudo apt install python3-pip
+
+Nothing should typically ever be pip installed in the base environment.   Exceptions are typically made for
+virtualenv and virtualenvwrapper
+
+A good way of enforcing this is:
+
+o export PIP_REQUIRE_VIRTUALENV=true
+
+virtualenv and virtualenvwrapper can be installed with:
+o pip3 install virtualenv
+o pip3 install virtualenvwrapper
+
+VirtualEnvWrapper can be started with:
+
+	mkdir ~/.virtualenvs
+
+And, in .bashrc: 
+
+	export WORKON_HOME=~/.virtualenvs
+	source {dir_where_virtual_env_wrapper_was_installed}/virtualenvwrapper.sh
+
+Note - that installing virtualenvwrapper with apt-get places virtualenvwrapper in /usr/share
+instead of /usr/local/bin.  Typically virtualenv/virtualenvwrapper are installed with pip.
+pip3 may also install in /home/{username}/.local/bin.  Example:
+    /home/shephard/.local/bin/virtualenvwrapper.sh
+
+So, in that case, you will need to:
+    source /home/shephard/.local/bin/virtualenvwrapper.shy
+
+
+One challenge is the infamous:
+
+```/usr/bin/python3.8: Error while finding module specification for 
+'virtualenvwrapper.hook_loader' (ModuleNotFoundError: No module named 'virtualenvwrapper')
+virtualenvwrapper.sh: There was a problem running the initialization hooks.
+
+If Python could not import the module virtualenvwrapper.hook_loader,
+check that virtualenvwrapper has been installed for
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8 and that PATH is
+set properly.```
+
+https://medium.com/@gitudaniel/installing-virtualenvwrapper-for-python3-ad3dfea7c717
+is a good writeup on that.   You need to ensure that their is a virtualenvwrapper 
+installed in the version of python that you used when pip installing it.  Typically
+it uses /usr/bin/python3 when you pip3 install, so the the following will work:
+
+```# VirtualEnvWrappers are awesome for python
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=~/.virtualenvs
+        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+  source /usr/local/bin/virtualenvwrapper.sh
+fi```
+
+And everything resolved itself. 
+
+Another Gotcha is bash_completion - 
+
+To install a new version of python, for older versions of ubuntu you will need to add the deadsnakes repo:
+https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
+
+
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+
+sudo apt-get install python3.7
+sudo apt-get install python3.8
+
+
+Once you have your python(s), pip, virtualenv, and virtualenvwrappers installed, you can proceed to create 
+a new virtual environment with:
+
+
+
+
+Jupyter-Lab / Jupyter Notebooks

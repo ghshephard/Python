@@ -1,0 +1,12 @@
+Managing environment:
+
+Managing .ssh keys in WSL.
+
+https://medium.com/@pscheit/use-an-ssh-agent-in-wsl-with-your-ssh-setup-in-windows-10-41756755993e
+
+Essentially:
+
+sudo apt-get install keychain
+/usr/bin/keychain --nogui $HOME/.ssh/id_rsa
+source $HOME/.keychain/$HOSTNAME-sh
+
