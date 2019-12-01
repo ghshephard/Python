@@ -23,20 +23,20 @@ venv doesn't do everything that virtualenv can do, and pipenv is a bigger beast)
 
 Pip can be installed with:
 
-* sudo apt update
-* sudo apt install python3-pip
+    sudo apt update
+    sudo apt install python3-pip
 
 
 virtualenv and virtualenvwrapper can be installed with:
 
-* pip3 install virtualenv
-* pip3 install virtualenvwrapper
+    pip3 install virtualenv
+    pip3 install virtualenvwrapper
 
 Outside of virtualenv/virtualenvwrapper, Nothing should typically ever be pip installed in the base environment.   
 
 A good way of enforcing this is:
 
-* export PIP_REQUIRE_VIRTUALENV=true
+    export PIP_REQUIRE_VIRTUALENV=true
 
 in your .bashrc.
 
@@ -49,7 +49,7 @@ And, in .bashrc:
 
 ```
     export WORKON_HOME=~/.virtualenvs
-	source {dir_where_virtual_env_wrapper_was_installed}/virtualenvwrapper.sh
+    source {dir_where_virtual_env_wrapper_was_installed}/virtualenvwrapper.sh
 ```
 
 Note - that installing virtualenvwrapper with apt-get places virtualenvwrapper in /usr/share
@@ -102,7 +102,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 ```
 
-And everything resolved itself. 
+And everything resolves itself. 
 
 Source .bashrc will get you:
 
@@ -155,6 +155,11 @@ And, you should have a minimal environment:
     wheel      0.33.6
 ```
 
+Note, there is an *implicit* indication that you want the first python in your path, in this case /usr/bin/python, to be
+used as the python that will be used in this virtual environment.  It would be much cleaner if you specifically stated
+which python you wish to use in the virtualenv - we'll see this below.
+
+
 # Installing Jupyter-Lab
 
 You can the install jupyter with:
@@ -191,17 +196,18 @@ https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
 
 
 Add the Repo and update the packages available.
+
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt-get update
 
 Install the vesions of python you are interested in:
+
     sudo apt-get install python3.7
     sudo apt-get install python3.8
 
 
 Once you have your python(s), pip, virtualenv, and virtualenvwrappers installed, you can proceed to create 
 a new virtual environment with:
-
 
     mkvirtualenv -p /usr/bin/python3.8  py38
 
@@ -240,4 +246,4 @@ Once you've added the kernels you want, you can verify they are there with:
       python3      /home/shephard/.virtualenvs/py37/share/jupyter/kernels/python3
 ```
             
-.
+Now that you've installed the various python kernels, you can access them from the notebook on a per-notebook basis. 
