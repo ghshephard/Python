@@ -7,7 +7,7 @@ Multiple elements of the stack required to manage a python Jupyter Labs environm
 * ipykernel
 * pip
 
-Some notes:
+Some notes:  (Everything below assuming Ubuntu 18.04 environment)
 
 In order to keep thing sane, all python work should always be done in virtual environment.
 
@@ -21,37 +21,52 @@ venv doesn't do everything that virtualenv can do, and pipenv is a bigger beast)
 
 Pip can be installed with:
 
-o sudo apt update
-o sudo apt install python3-pip
+* sudo apt update
+* sudo apt install python3-pip
 
-Nothing should typically ever be pip installed in the base environment.   Exceptions are typically made for
-virtualenv and virtualenvwrapper
+
+virtualenv and virtualenvwrapper can be installed with:
+
+* pip3 install virtualenv
+* pip3 install virtualenvwrapper
+
+Outside of virtualenv/virtualenvwrapper, Nothing should typically ever be pip installed in the base environment.   
 
 A good way of enforcing this is:
 
-o export PIP_REQUIRE_VIRTUALENV=true
+* export PIP_REQUIRE_VIRTUALENV=true
 
-virtualenv and virtualenvwrapper can be installed with:
-o pip3 install virtualenv
-o pip3 install virtualenvwrapper
+in your .bashrc.
+
 
 VirtualEnvWrapper can be started with:
 
-	mkdir ~/.virtualenvs
+* mkdir ~/.virtualenvs
 
 And, in .bashrc: 
 
-	export WORKON_HOME=~/.virtualenvs
+    export WORKON_HOME=~/.virtualenvs
 	source {dir_where_virtual_env_wrapper_was_installed}/virtualenvwrapper.sh
 
 Note - that installing virtualenvwrapper with apt-get places virtualenvwrapper in /usr/share
 instead of /usr/local/bin.  Typically virtualenv/virtualenvwrapper are installed with pip.
-pip3 may also install in /home/{username}/.local/bin.  Example:
+pip3, as of at least version 9.0.1, installs in /home/{username}/.local/bin.  Example:
+    
     /home/shephard/.local/bin/virtualenvwrapper.sh
 
 So, in that case, you will need to:
+    
     source /home/shephard/.local/bin/virtualenvwrapper.shy
 
+Also, once you have files located in those directories, you will want to source
+your .profie to get $HOME/.local/bin into your path:
+
+```
+    # set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+````
 
 One challenge is the infamous:
 
@@ -65,20 +80,65 @@ VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8 and that PATH is
 set properly.```
 
 https://medium.com/@gitudaniel/installing-virtualenvwrapper-for-python3-ad3dfea7c717
-is a good writeup on that.   You need to ensure that their is a virtualenvwrapper 
+is a good writeup on that.   You need to ensure that there is a virtualenvwrapper 
 installed in the version of python that you used when pip installing it.  Typically
 it uses /usr/bin/python3 when you pip3 install, so the the following will work:
 
 ```# VirtualEnvWrappers are awesome for python
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=~/.virtualenvs
-        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
   source /usr/local/bin/virtualenvwrapper.sh
 fi```
 
 And everything resolved itself. 
 
-Another Gotcha is bash_completion - 
+Source .bashrc will get you:
+
+
+```virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/premkproject
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/postmkproject
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/initialize
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/premkvirtualenv
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/postmkvirtualenv
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/prermvirtualenv
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/postrmvirtualenv
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/predeactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/postdeactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/preactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/postactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/get_env_details
+```
+
+
+You should then be able to make your first virtual environment with:
+
+    mkvirtualenv project
+
+If all goes will you will see:
+
+```shephard@ubuntu-s-1vcpu-1gb-nyc3-01:~$ mkvirtualenv project
+Using base prefix '/usr'
+New python executable in /home/shephard/.virtualenvs/project/bin/python3
+Also creating executable in /home/shephard/.virtualenvs/project/bin/python
+Installing setuptools, pip, wheel...
+done.
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/project/bin/predeactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/project/bin/postdeactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/project/bin/preactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/project/bin/postactivate
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/project/bin/get_env_details
+```
+
+And, you should have a minimal environment:
+
+```(project) shephard@ubuntu-s-1vcpu-1gb-nyc3-01:~$ pip3 list
+Package    Version
+---------- -------
+pip        19.3.1
+setuptools 42.0.2
+wheel      0.33.6
+```
 
 To install a new version of python, for older versions of ubuntu you will need to add the deadsnakes repo:
 https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
