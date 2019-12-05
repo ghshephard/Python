@@ -36,3 +36,19 @@ The key concept here is that a back reference to a capture group that *did not p
 	best, line of the night for gordon ==> best
 	last fine - always gordon ==> last
 
+### Positive Lookbehind
+
+    (?=re_1)re2
+
+ Similar to Positive Lookahead, Postive look behind ensures that the match is possible by "looking behind" in the line to 
+ see if something is present. 
+
+    cat f2 | grep -P 'Sport'
+
+    Basket Sport
+    Hockey Sport
+    Soccer Sport
+    Football Sport
+
+    cat f2 | grep -P '(?<=t )Sport'
+    Basket Sport
