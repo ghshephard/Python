@@ -95,10 +95,11 @@ it uses /usr/bin/python3 when you pip3 install, so the the following will work:
 
 ```
 # VirtualEnvWrappers are awesome for python
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=~/.virtualenvs
-        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-  source /usr/local/bin/virtualenvwrapper.sh
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  export PIP_REQUIRE_VIRTUALENV=true
+  source ${HOME}/.local/bin/virtualenvwrapper.sh
 fi
 ```
 
