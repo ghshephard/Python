@@ -60,7 +60,7 @@ pip3, as of at least version 9.0.1, installs in /home/{username}/.local/bin.  Ex
 
 So, in that case, you will need to:
     
-    source /home/shephard/.local/bin/virtualenvwrapper.shy
+    source /home/shephard/.local/bin/virtualenvwrapper.sh
 
 Also, once you have files located in those directories, you will want to source
 your .profie to get $HOME/.local/bin into your path:
