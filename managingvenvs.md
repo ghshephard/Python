@@ -19,7 +19,7 @@ https://virtualenvwrapper.readthedocs.io/en/latest/
 VirtualEnvironmentWrappers rely on virtualenv https://virtualenv.pypa.io/en/latest/
 
 (Note - there is also venv (Python3) and pipenv (which is a combination of requirements and enviroment management) 
-venv doesn't do everything that virtualenv can do, and pipenv is a bigger beast)
+venv doesn't do everything that virtualenv can do, and pipenv is a bigger beast.  Also note the conversation on HN Re: Pipenv: https://news.ycombinator.com/item?id=21781421)
 
 Pip can be installed with:
 
