@@ -248,3 +248,7 @@ Once you've added the kernels you want, you can verify they are there with:
 ```
             
 Now that you've installed the various python kernels, you can access them from the notebook on a per-notebook basis. 
+
+Some references:
+
+https://vsupalov.com/developing-with-python3-8-on-ubuntu-18-04/
