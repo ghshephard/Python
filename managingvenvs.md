@@ -248,9 +248,11 @@ Once you've added the kernels you want, you can verify they are there with:
 ```
 
 Two other very helpful commands:
+````
     import sys; sys.path
     import sys; sys.executable
-  
+````
+
 Now that you've installed the various python kernels, you can access them from the notebook on a per-notebook basis. 
 
 Some references:
