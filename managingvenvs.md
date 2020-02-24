@@ -267,6 +267,37 @@ runtime:
     /home/shephard/.local/share/jupyter/runtime
 ````
 
+Locations of your kernelspec .json files can be found with:
+
+````
+$ jupyter kernelspec list --json
+{
+  "kernelspecs": {
+    "python2": {
+      "resource_dir": "/home/shephard/.local/share/jupyter/kernels/python2",
+      "spec": {
+        "argv": [
+          "python",
+          "-m",
+          "ipykernel_launcher",
+          "-f",
+          "{connection_file}"
+        ],
+        "env": {},
+        "display_name": "Python 2",
+        "language": "python",
+        "interrupt_mode": "signal",
+        "metadata": {}
+      }
+    },
+    "python3": {
+      "resource_dir": "/home/shephard/.local/share/jupyter/kernels/python3",
+      "spec": {
+        "argv": [
+ 
+ ````
+ 
+
 Now that you've installed the various python kernels, you can access them from the notebook on a per-notebook basis. 
 
 Some references:
