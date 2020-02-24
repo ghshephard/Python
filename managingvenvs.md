@@ -247,10 +247,24 @@ Once you've added the kernels you want, you can verify they are there with:
       python3      /home/shephard/.virtualenvs/py37/share/jupyter/kernels/python3
 ```
 
-Two other very helpful commands:
+Helpful commands to check your python environment:
 ````
     import sys; sys.path
     import sys; sys.executable
+````
+Likewise to check your jupyter environment
+````
+$ jupyter --paths
+config:
+    /home/shephard/.jupyter
+    /usr/local/etc/jupyter
+    /etc/jupyter
+data:
+    /home/shephard/.local/share/jupyter
+    /usr/local/share/jupyter
+    /usr/share/jupyter
+runtime:
+    /home/shephard/.local/share/jupyter/runtime
 ````
 
 Now that you've installed the various python kernels, you can access them from the notebook on a per-notebook basis. 
