@@ -236,8 +236,22 @@ From there, you add jupyter-lab (which pulls in all it's pre-requistes):
     pip3 install jupyterlab
     ipython kernel install --user --name "Python3.8"
 
+In order to get auto-complete to work with with Pandas, you need to do the following:
+
+    ipython profile create
+
+This creates the profile
+
+    ~/.ipython/profile_default/ipython_config.py
+
+Edit ipython_config.py to add autocompletion:
+ 
+     c = get_config()
+     c.Completer.use_jedi = False
+
 
 Once you've added the kernels you want, you can verify they are there with:
+
 ```
     (py37) shephard@ubuntu-s-1vcpu-1gb-nyc3-01:~$ jupyter kernelspec list
     Available kernels:
