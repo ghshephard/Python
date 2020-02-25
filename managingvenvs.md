@@ -40,7 +40,10 @@ A good way of enforcing this is:
 
 in your .bashrc.
 
-
+If, for some reason you need to do something with pip in your root environment, you can temporarily:
+    
+     $ PIP_REQUIRE_VIRTUALENV=false pip list
+     
 VirtualEnvWrapper can be started with:
 
     mkdir ~/.virtualenvs
