@@ -311,7 +311,8 @@ $ jupyter kernelspec list --json
       "resource_dir": "/home/shephard/.local/share/jupyter/kernels/python3",
       "spec": {
         "argv": [
- 
+    .... 
+    
  ````
  
 
