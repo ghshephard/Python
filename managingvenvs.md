@@ -93,7 +93,7 @@ One challenge is the infamous:
 
 https://medium.com/@gitudaniel/installing-virtualenvwrapper-for-python3-ad3dfea7c717
 is a good writeup on that.   You need to ensure that there is a virtualenvwrapper 
-installed in the version of python that you used when pip installing it.  Typically
+installed in the **version of python that you used when pip installing it.**  Typically
 it uses /usr/bin/python3 when you pip3 install, so the the following will work:
 
 ```
