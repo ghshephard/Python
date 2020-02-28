@@ -195,6 +195,8 @@ You should now be able to access your environment at:
 
 # Other versions of Python:
 
+**NOTE** - Before experimenting with this - when you start Jupyter, it will be started in the context of whatever venv you are in - which means that the libraries you have will be pip installed in that context.  So, you need to make sure that you have your libraries properly installed for your python kernel *prior* to launching jupyter, as pip installing them after you've launched will not install them in the kernel venv you launched.  This is very confusing the first time you run into it, but makes sense.  pip doesn't know which jupyter kernel you are running, only which venv it is in.
+
 To install a new version of python, for older versions of ubuntu you will need to add the deadsnakes repo:
 https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
 
