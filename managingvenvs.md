@@ -197,6 +197,24 @@ You should now be able to access your environment at:
 
 **NOTE** - Before experimenting with this - when you start Jupyter, it will be started in the context of whatever venv you are in - which means that the libraries you have will be pip installed in that context.  So, you need to make sure that you have your libraries properly installed for your python kernel *prior* to launching jupyter, as pip installing them after you've launched will not install them in the kernel venv you launched.  This is very confusing the first time you run into it, but makes sense.  pip doesn't know which jupyter kernel you are running, only which venv it is in.
 
+Do a 
+````
+!pip list -v  | head
+Package            Version Location                                                     Installer
+------------------ ------- ------------------------------------------------------------ ---------
+attrs              19.3.0  /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+backcall           0.1.0   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+bleach             3.1.0   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+decorator          4.4.1   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+defusedxml         0.6.0   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+entrypoints        0.3     /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+importlib-metadata 1.0.0   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+ipykernel          5.1.3   /home/shephard/.virtualenvs/py37/lib/python3.7/site-packages pip
+...
+````
+
+To get a sense of where your current pip fils are being read from/installed to.
+
 To install a new version of python, for older versions of ubuntu you will need to add the deadsnakes repo:
 https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
 
