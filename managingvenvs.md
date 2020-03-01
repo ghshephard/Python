@@ -271,6 +271,13 @@ Helpful commands to check your python environment:
     import sys; sys.path
     import sys; sys.executable
 ````
+
+When you run:
+
+    import foo
+    
+Python will search all of the folders in your `sys.path` for those modules.  The sys.path is constructed based on what directory python is located in - if you are running a venv vesion, it will try and use the lib, and lib-dynload directories relative to that version, in addition to the pythonnn.zip file.   As well, python will automatically import site, (unless you override with the `-S` option, which will add some additional directories such as site-packages and dist-packages.  See https://docs.python.org/3/library/site.html#site.getsitepackages for more details.
+
 Likewise to check your jupyter environment
 ````
 $ jupyter --paths
