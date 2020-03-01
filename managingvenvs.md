@@ -197,7 +197,7 @@ You should now be able to access your environment at:
 
 **NOTE** - Before experimenting with this - when you start Jupyter, it will be started in the context of whatever venv you are in - which means that the libraries you have will be pip installed in that context.  So, you need to make sure that you have your libraries properly installed for your python kernel *prior* to launching jupyter, as pip installing them after you've launched will not install them in the kernel venv you launched.  This is very confusing the first time you run into it, but makes sense.  pip doesn't know which jupyter kernel you are running, only which venv it is in.
 
-Do a 
+From within your jupyter notebook, do a 
 ````
 !pip list -v  | head
 Package            Version Location                                                     Installer
