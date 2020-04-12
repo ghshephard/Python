@@ -13,3 +13,15 @@ Get the full use of your widescreen monitor with Jupyter Notebook (automatic wit
     from IPython.core.display import display, HTML
     display(HTML("<style>.container { width:95% !important; }</style>"))
     
+---
+Get Autocompletion working with pandas with df.['somecol']. [tab]
+
+In ~/.ipython\profile_default\ipython_config.py:
+    
+     c = get_config()
+     c.Completer.use_jedi = False
+    
+In Jupyter first cell:
+
+     %config IPCompleter.greedy=True
+    
