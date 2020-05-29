@@ -97,13 +97,22 @@ installed in the **version of python that you used when pip installing it.**  Ty
 it uses /usr/bin/python3 when you pip3 install, so the the following will work:
 
 ```
-# VirtualEnvWrappers are awesome for python
-if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
-  export WORKON_HOME=~/.virtualenvs
-  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-  export PIP_REQUIRE_VIRTUALENV=true
-  source ${HOME}/.local/bin/virtualenvwrapper.sh
+if [ -x "$(command -v virtualenvwrapper.sh)" ]; then
+        # Judgement call what order to look custom python3, system3 python3, system python2 is what I'm using here.  
+        # Ubuntu 20.04 comes with Python3 in /usr/bin
+        if [ -f /usr/local/bin/python3 ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+        elif [ -f /usr/bin/python3 ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+        elif [ -f /usr/bin/python ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+        fi
+        #echo "Set VirtualEnvWrapper to ${VIRTUALENVWRAPPER_PYTHON}"
+        source "$(command -v virtualenvwrapper.sh)"
+        export WORKON_HOME=~/.virtualenvs
 fi
+
+
 ```
 
 And everything resolves itself. 
