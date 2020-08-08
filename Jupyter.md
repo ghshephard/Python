@@ -1,5 +1,8 @@
 ## Some useful Jupyter Tips:
 
+Changing Jupyter Password:
+     jupyter notebook password
+
 Auto-Reload your changed python modules
 
     %load_ext autoreload
