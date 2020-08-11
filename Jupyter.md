@@ -1,5 +1,10 @@
 ## Some useful Jupyter Tips:
 
+Load the Memory Profiler:
+    %load_ext memory_profiler
+    %memit x={i:i for i in range(1_000_000)}
+    peak memory: 297.89 MiB, increment: 171.49 MiB
+
 Changing Jupyter Password:
      jupyter notebook password
 
