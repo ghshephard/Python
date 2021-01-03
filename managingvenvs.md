@@ -363,18 +363,15 @@ https://vsupalov.com/developing-with-python3-8-on-ubuntu-18-04/
 
 [1] Interesting - there have been some changes to mkvirtualenv.  Ran this command this evening with mkvirtualenv 20.2.2 and got:
 ```
-if [ -x "$(command -v virtualenvwrapper.sh)" ]; then
-        # Judgement call what order to look custom python3, system3 python3, system python2 is what I'm using here.  
-        # Ubuntu 20.04 comes with Python3 in /usr/bin
-        if [ -f /usr/local/bin/python3 ]; then
-                export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-        elif [ -f /usr/bin/python3 ]; then
-                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-        elif [ -f /usr/bin/python ]; then
-                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-        fi
-        #echo "Set VirtualEnvWrapper to ${VIRTUALENVWRAPPER_PYTHON}"
-        source "$(command -v virtualenvwrapper.sh)"
-        export WORKON_HOME=~/.virtualenvs
-fi
+shephard@m1ubuntu:~$ mkvirtualenv py39                                               
+created virtual environment CPython3.8.5.final.0-64 in 177ms                                                                                                               
+  creator CPython3Posix(dest=/home/shephard/.virtualenvs/py39, clear=False, no_vcs_ignore=False, global=False)                                                             
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/shephard/.local/share/virtualenv)                           
+    added seed packages: pip==20.3.1, setuptools==51.0.0, wheel==0.36.1                                                                                                    
+  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator                                                                
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/predeactivate                                                                                 
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/postdeactivate                                                                                
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/preactivate                                                                                   
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/postactivate                                                                                  
+virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/get_env_details 
 ```
