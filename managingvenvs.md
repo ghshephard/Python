@@ -141,7 +141,7 @@ You should then be able to make your first virtual environment with:
 
     mkvirtualenv project
 
-If all goes will you will see:
+If all goes will you will see: [1] 
 
 ```
     shephard@ubuntu-s-1vcpu-1gb-nyc3-01:~$ mkvirtualenv project
@@ -359,3 +359,22 @@ Now that you've installed the various python kernels, you can access them from t
 Some references:
 
 https://vsupalov.com/developing-with-python3-8-on-ubuntu-18-04/
+
+
+[1] Interesting - there have been some changes to mkvirtualenv.  Ran this command this evening with mkvirtualenv 20.2.2 and got:
+```
+if [ -x "$(command -v virtualenvwrapper.sh)" ]; then
+        # Judgement call what order to look custom python3, system3 python3, system python2 is what I'm using here.  
+        # Ubuntu 20.04 comes with Python3 in /usr/bin
+        if [ -f /usr/local/bin/python3 ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+        elif [ -f /usr/bin/python3 ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+        elif [ -f /usr/bin/python ]; then
+                export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+        fi
+        #echo "Set VirtualEnvWrapper to ${VIRTUALENVWRAPPER_PYTHON}"
+        source "$(command -v virtualenvwrapper.sh)"
+        export WORKON_HOME=~/.virtualenvs
+fi
+```
