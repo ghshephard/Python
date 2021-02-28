@@ -27,10 +27,10 @@ Pip can be installed with:
     sudo apt install python3-pip
 
 
-virtualenv and virtualenvwrapper can be installed with:
+virtualenv and virtualenvwrapper can be installed with: [2] 
 
-    pip3 install virtualenv
-    pip3 install virtualenvwrapper
+    pip3 install virtualenv.    ## Note - this is the beginning of a lot of confusion.  See Bottom for notes on virtualenvlocation
+    pip3 install virtualenvwrapper.  
 
 Outside of virtualenv/virtualenvwrapper, Nothing should typically ever be pip installed in the base environment.   
 
@@ -374,4 +374,57 @@ virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/pos
 virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/preactivate                                                                                   
 virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/postactivate                                                                                  
 virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py39/bin/get_env_details 
+```
+
+
+[2] This pip3 install will dump a ton of modules, files, libraries into the directory of a *particular* Python install.  If, you later run a different version of python, you'll get an error along the lines of: 
+
+```/Library/Developer/CommandLineTools/usr/bin/python3: Error while finding module specification for 'virtualenvwrapper.hook_loader' (ModuleNotFoundError: No module named 'virtualenvwrapper')
+virtualenvwrapper.sh: There was a problem running the initialization hooks.
+
+If Python could not import the module virtualenvwrapper.hook_loader,
+check that virtualenvwrapper has been installed for
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 and that PATH is
+set properly.
+```
+
+The error message honestly couldn't be clearer - and there are a couple fixes. 
+1. You can simply install virtualenv/virtualenvwrapper in the version of Python you are running.
+2. You can set the environment variable "VIRTUALENVWRAPPER_PYTHON" to *point* to the version of python you should be running, and make sure that version is in your path.
+3. Some combination of the above 2.
+
+
+Here, on a macOS system, that I was rebuilding (So, I had to tell it to ignore the PIP_REQUIRE_VIRTUALENV *so I could install virtualenv* (Irony)
+
+
+```
+
+$ egrep -B 3 -A 3 homebrew .bashrc
+...
+if [ -x "$(command -v virtualenvwrapper.sh)" ]; then
+        # Kind of a judgement call what order to look - homebrew, custom python3, system3 python3, system python2 is my prference
+	if [ -f /opt/homebrew/bin/python3 ]; then
+		export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3 
+	elif [ -f /usr/local/bin/python3 ]; then
+		export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3 
+	elif [ -f /usr/bin/python3 ]; then
+...    
+    
+$ PIP_REQUIRE_VIRTUALENV=false pip3 install virtualenv virtualenvwrapper
+Collecting virtualenv
+  Using cached virtualenv-20.4.2-py2.py3-none-any.whl (7.2 MB)
+Collecting virtualenvwrapper
+  Using cached virtualenvwrapper-4.8.4-py2.py3-none-any.whl
+...
+Installing collected packages: virtualenv, virtualenvwrapper
+Successfully installed virtualenv-20.4.2 virtualenvwrapper-4.8.4
+
+$ python3
+Python 3.9.2 (default, Feb 24 2021, 05:06:40) 
+>>> import virtualenv, virtualenvwrapper
+>>> virtualenv.__path__
+['/opt/homebrew/lib/python3.9/site-packages/virtualenv']
+>>> virtualenvwrapper.__path__
+_NamespacePath(['/opt/homebrew/Cellar/python@3.9/3.9.2_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/virtualenvwrapper'])
+>>> 
 ```
