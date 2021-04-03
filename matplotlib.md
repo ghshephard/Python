@@ -13,3 +13,5 @@ Set matplotlib figure size to something reasonable for jupyter
 ```
 plt.rcParams["figure.figsize"] = (10,10)
 ```
+
+Excellent SO post on tweaking legends: https://stackoverflow.com/a/4701285
