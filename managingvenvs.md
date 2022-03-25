@@ -262,8 +262,19 @@ select whichever version you want.  You should then get:
     virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py38/bin/get_env_details
 ```
 
+**NOTE**: 
+If you get a "ModuleNotFoundError: No module named 'distutils.cmd' - see https://askubuntu.com/a/1260519
 
-From there, you add jupyter-lab (which pulls in all it's pre-requistes):
+Essentially:
+
+```
+    Debian has decided that distutils is not a core python package, so it is not included in the 
+    last versions of debian and debian-based OSes. You should be able to do sudo apt install 
+    python3-distutils and it should work.
+```
+
+
+Once you have the new version of python installed and virtualenv created, you add jupyter-lab (which pulls in all it's pre-requistes):
 
     pip3 install jupyterlab
     ipython kernel install --user --name "Python3.8"
