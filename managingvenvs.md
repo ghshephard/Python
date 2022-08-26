@@ -262,7 +262,7 @@ select whichever version you want.  You should then get:
     virtualenvwrapper.user_scripts creating /home/shephard/.virtualenvs/py38/bin/get_env_details
 ```
 
-**NOTE**: 
+**NOTE**:
 If you get a "ModuleNotFoundError: No module named 'distutils.cmd' - see https://askubuntu.com/a/1260519
 
 Essentially:
@@ -273,6 +273,15 @@ Essentially:
     python3-distutils and it should work.
 ```
 
+**Note 2 (Python 3.10)**
+
+if you get this error
+
+    ModuleNotFoundError: No module named 'distutils.cmd'
+
+you can try it
+
+    sudo apt-get install python3.10-distutils
 
 Once you have the new version of python installed and virtualenv created, you add jupyter-lab (which pulls in all it's pre-requistes):
 
