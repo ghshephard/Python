@@ -287,7 +287,7 @@ Likewise for python3.9
    
     sudo apt-get install python3.9-distutils
 
-*** Note 3 (Python 3.11)**
+**Note 3 (Python 3.11)**
 If you get an error of the form while installling ipykernel:
 ```
       psutil/_psutil_common.c:9:10: fatal error: Python.h: No such file or directory
