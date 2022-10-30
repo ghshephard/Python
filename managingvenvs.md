@@ -287,6 +287,24 @@ Likewise for python3.9
    
     sudo apt-get install python3.9-distutils
 
+*** Note 3 (Python 3.11)**
+If you get an error of the form while installling ipykernel:
+```
+      psutil/_psutil_common.c:9:10: fatal error: Python.h: No such file or directory
+          9 | #include <Python.h>
+            |          ^~~~~~~~~~
+      compilation terminated.
+      error: command '/bin/x86_64-linux-gnu-gcc' failed with exit code 1
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for psutil
+```
+
+The following should clear it up:
+```
+   $ sudo apt install libpython3.11-dev
+```
 
 Once you have the new version of python installed and virtualenv created, you add jupyter-lab (which pulls in all it's pre-requistes):
 
