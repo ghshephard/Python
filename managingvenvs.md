@@ -279,9 +279,14 @@ if you get this error
 
     ModuleNotFoundError: No module named 'distutils.cmd'
 
-you can try it
+you can try this
 
     sudo apt-get install python3.10-distutils
+    
+Likewise for python3.9
+   
+    sudo apt-get install python3.9-distutils
+
 
 Once you have the new version of python installed and virtualenv created, you add jupyter-lab (which pulls in all it's pre-requistes):
 
